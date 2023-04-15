@@ -1,0 +1,72 @@
+<ion-app>
+  <ion-header>
+    <ion-toolbar>
+      <ion-back-button slot="start"
+                       color="light"
+                       defaultHref="/communities">
+        Back
+      </ion-back-button>
+      <ion-title> {{communityName}} </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content fullscreen
+               class="main">
+    <header class="centered ion-padding">
+      <h2>Community</h2>
+    </header>
+
+    <section class="centered ion-padding">
+      <ion-list>
+        <ion-item color="light">
+          <ion-label>Admins: {{ adminWallets }}</ion-label>
+        </ion-item>
+        <ion-item color="light">
+          <ion-label>Fee: {{ fee }}%</ion-label>
+        </ion-item>
+      </ion-list>
+    </section>
+
+
+    <header class="centered ion-padding">
+      <h2>🟡 Pending Games</h2>
+    </header>
+
+    <section class="centered ion-padding">
+      <ion-list>
+        <ion-item *ngFor="let item of pendingGames"
+                  color="light">
+          <ion-label>{{ item.name }}</ion-label>
+
+          <ion-button slot="end"
+                      color="light">
+            Play 🎮
+          </ion-button>
+
+          <ion-button slot="end"
+                      color="light">
+            Approve ✅
+          </ion-button>
+          <ion-button slot="end"
+                      color="light">
+            Reject 🟡
+          </ion-button>
+        </ion-item>
+      </ion-list>
+    </section>
+
+    <header class="centered ion-padding">
+      <h2>🟢 Approved Games</h2>
+    </header>
+
+    <section class="centered ion-padding">
+      <ion-list>
+        <ion-item *ngFor="let item of approvedGames"
+                  color="light">
+          <ion-label>{{ item.name }}</ion-label>
+        </ion-item>
+      </ion-list>
+    </section>
+
+  </ion-content>
+</ion-app>
