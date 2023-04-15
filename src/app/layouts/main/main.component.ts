@@ -25,13 +25,19 @@ export class MainLayout implements OnInit {
   ngOnInit() {
     const path = this.location.path(false)
 
+    const existingAddress = localStorage.getItem('walletAddress')
+    if (existingAddress) {
+      this.user.walletAddress = existingAddress
+      this.user.nickname = minimizeAddress(existingAddress)
+    }
+
     switch (path) {
       case '/game-developer':
         this.selectedTab = 'game-developer'
         break
 
-      case '/publisher':
-        this.selectedTab = 'publisher'
+      case '/communities':
+        this.selectedTab = 'communities'
         break
 
       case '/player-lobby':
@@ -62,8 +68,12 @@ export class MainLayout implements OnInit {
     window.ethereum
       .request({ method: 'eth_requestAccounts' })
       .then(accounts => {
+        this.user.walletAddress = accounts[0]
+        this.user.nickname = minimizeAddress(accounts[0])
         console.log('Connected to Metamask')
         console.log('Current account:', accounts[0])
+
+        localStorage.setItem('walletAddress', accounts[0])
       })
       .catch(error => {
         console.error(error)
@@ -79,4 +89,15 @@ export class MainLayout implements OnInit {
       this.user.avatarConfig = newConfig
     }
   }
+}
+
+function minimizeAddress(address) {
+  if (address.length !== 42) {
+    throw new Error('Invalid Ethereum address length')
+  }
+
+  const prefix = address.slice(0, 6)
+  const suffix = address.slice(38, 42)
+
+  return prefix + '...' + suffix
 }

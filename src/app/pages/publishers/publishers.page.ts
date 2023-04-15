@@ -20,12 +20,15 @@ export class PublishersPage implements OnInit {
       return
     }
 
+    const adminWalletAddressList = this.adminWalletsString
+      .replace(/ /g, '')
+      .split(',')
+
     this.communities.items.push({
       id: Date.now().toString(),
+      users: adminWalletAddressList,
       name: this.name,
-      adminWallets: this.adminWalletsString
-        .replace(/ /g, '')
-        .split(','),
+      adminWallets: adminWalletAddressList,
       fee: this.fee,
       games: [],
     })

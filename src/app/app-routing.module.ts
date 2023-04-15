@@ -4,7 +4,8 @@ import { environment } from '../environments/environment'
 import { MainLayout } from './layouts/main/main.component'
 import { GameDevelopersPage } from './pages/game-developers/game-developers.page'
 import { PlayerLobbyPage } from './pages/player-lobby/player-lobby.page'
-import { PublisherPage } from './pages/publishers/publishers.page'
+import { PublisherPage } from './pages/publisher/publisher.page'
+import { PublishersPage } from './pages/publishers/publishers.page'
 import { RoomPage } from './pages/room/room.page'
 
 const routes: Routes = [
@@ -19,17 +20,13 @@ const routes: Routes = [
         pathMatch: 'full',
         component: GameDevelopersPage,
       },
-      { path: 'publisher', component: PublisherPage },
+      { path: 'communities', component: PublishersPage },
       { path: 'player-lobby', component: PlayerLobbyPage },
     ],
   },
 
+  { path: 'publisher/:id', component: PublisherPage },
   { path: 'room', component: RoomPage },
-  // {
-  //   path: '',
-  //   component: MinimalLayout,
-  //   children: [],
-  // },
 
   { path: '**', redirectTo: '/game-developer' },
 ]

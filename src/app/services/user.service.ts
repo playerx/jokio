@@ -5,6 +5,7 @@ import { DEFAULT_AVATAR_CONFIG } from './avatar.service'
 @Injectable({ providedIn: 'root' })
 export class UserService {
   userId: string = Date.now().toString()
+  walletAddress = ''
   nickname: string = 'Guest'
   avatarConfig: GqlAvatarConfig = DEFAULT_AVATAR_CONFIG
 
