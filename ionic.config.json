@@ -1,0 +1,7 @@
+{
+  "name": "Jokio App",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

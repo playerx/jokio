@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+  width: 100px;
+  height: 100%;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  position: relative;
+  // background: rgba(0, 0, 0, 0.2);
+  border-radius: 14px;
+  flex: 1;
+
+  img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+  }
+}

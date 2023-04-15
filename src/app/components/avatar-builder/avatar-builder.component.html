@@ -1,0 +1,106 @@
+<ion-header color="light">
+  <div class="avatarPreview">
+    <jok-avatar [config]="config"></jok-avatar>
+    <div class="leftActions">
+      <ion-button fill="clear" color="dark" (click)="close()">
+        <ion-icon
+          slot="icon-only"
+          name="close-circle-outline"
+        ></ion-icon>
+      </ion-button>
+    </div>
+    <div class="rightActions">
+      <ng-container *ngIf="isSaved(); else SaveTemplate">
+        <ion-button size="small" color="primary" disabled>
+          Saved
+          <ion-icon
+            slot="start"
+            name="checkmark-circle-outline"
+          ></ion-icon>
+        </ion-button>
+
+        <!-- <ion-button
+          fill="outline"
+          size="small"
+          color="dark"
+          (click)="share()"
+        >
+          <ion-icon slot="start" name="link-outline"></ion-icon>
+          Share
+        </ion-button> -->
+      </ng-container>
+
+      <ng-template #SaveTemplate>
+        <ion-button
+          fill="outline"
+          size="small"
+          color="primary"
+          (click)="save()"
+        >
+          <ion-icon slot="start" name="create-outline"></ion-icon>
+          Save
+        </ion-button>
+
+        <!-- <ion-button
+          fill="clear"
+          size="small"
+          color="secondary"
+          (click)="undo()"
+        >
+          <ion-icon slot="start" name="arrow-undo-outline"></ion-icon>
+          Undo
+        </ion-button> -->
+      </ng-template>
+    </div>
+  </div>
+  <ion-segment
+    [scrollable]="true"
+    [value]="selectedTab"
+    class="itemTypes"
+    [class.loaded]="isMenuLoaded"
+    (ionChange)="onTabChange($event)"
+  >
+    <div class="space"></div>
+
+    <ion-segment-button
+      *ngFor="let item of menuItems"
+      [value]="item.tab"
+    >
+      <ion-label>{{ item.title }}</ion-label>
+    </ion-segment-button>
+
+    <div class="space"></div>
+  </ion-segment>
+</ion-header>
+<ion-content color="light">
+  <section *ngFor="let group of selectedCollectionGroups">
+    <h2 class="ion-padding-horizontal">{{ group.name }}</h2>
+    <div
+      *ngFor="let collection of group.collections"
+      class="collection"
+    >
+      <h3 *ngIf="collection.name" class="ion-padding-horizontal">
+        {{ collection.name }}
+      </h3>
+      <div class="itemsContainer">
+        <div
+          *ngFor="let item of collection.items"
+          class="item ion-margin"
+          [class.selected]="isSelected(item)"
+          (click)="selectItem(item)"
+        >
+          <img [src]="item.imageUrl" />
+          <!-- {{ item.key }} -->
+
+          <div class="selectionIcon">
+            <ion-icon name="checkmark-sharp"></ion-icon>
+          </div>
+        </div>
+        <div
+          *ngFor="let item of [1, 2, 3, 4, 5]"
+          class="emptyItem ion-margin-horizontal"
+        ></div>
+      </div>
+    </div>
+  </section>
+</ion-content>

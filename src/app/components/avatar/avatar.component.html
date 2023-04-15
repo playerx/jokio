@@ -1,0 +1,5 @@
+<div class="container">
+  <ng-container *ngFor="let imageUrl of layerUrls; let i = index">
+    <img [src]="imageUrl" [alt]="'layer ' + i" />
+  </ng-container>
+</div>

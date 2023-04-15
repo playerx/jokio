@@ -1,0 +1,86 @@
+<ion-header class="ion-padding-horizontal"
+            [class.separatorLine]="!hideSeparatorLine">
+  <ion-toolbar>
+    <div class="ion-text-center logo"
+         slot="start">
+      <ion-icon [class.disabled]="false"
+                src="/assets/joklogo.svg"></ion-icon>
+    </div>
+
+    <ion-segment class="desktopScreen"
+                 color="secondary"
+                 [value]="selectedTab"
+                 (ionChange)="onTabChange($event)">
+      <ion-segment-button value="game-developer"
+                          routerLinkActive="segment-button-checked"
+                          routerLink="/game-developer">
+        <ion-label>Game Dev</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="publisher"
+                          routerLinkActive="segment-button-checked"
+                          routerLink="/publisher">
+        <ion-label>Publisher</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="player-lobby"
+                          routerLinkActive="segment-button-checked"
+                          routerLink="/player-lobby">
+        <ion-label>Player</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <div slot="end"
+         class="ion-text-center actions">
+      <ion-button size="small"
+                  color="light"
+                  fill="outline">
+        <span>0</span>
+        <ion-icon slot="end"
+                  src="/assets/token.svg"></ion-icon>
+      </ion-button>
+      <ion-button color="secondary"
+                  size="small"
+                  class="userProfileButton"
+                  (click)="onUserSelect()">
+        {{ user.nickname }}
+        <!-- <span *ngIf="account.chainName" class="chain">
+              [{{ account.chainName }}]
+            </span> -->
+      </ion-button>
+
+      <div class="avatar"
+           (click)="openAvatarBuilder()">
+        <jok-avatar [config]="user.avatarConfig"></jok-avatar>
+
+        <ion-icon *ngIf="avatar.isDraft"
+                  name="create-outline"></ion-icon>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true"
+             [scrollEvents]="true"
+             class="main"
+             (ionScroll)="onScroll($event)">
+  <router-outlet></router-outlet>
+</ion-content>
+
+<ion-segment class="mobileScreen"
+             color="secondary"
+             [value]="selectedTab"
+             (ionChange)="onTabChange($event)">
+  <ion-segment-button value="game-developer"
+                      routerLinkActive="segment-button-checked"
+                      routerLink="/game-developer">
+    <ion-label>Game Dev</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="publisher"
+                      routerLinkActive="segment-button-checked"
+                      routerLink="/publisher">
+    <ion-label>Publisher</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="player-lobby"
+                      routerLinkActive="segment-button-checked"
+                      routerLink="/player-lobby">
+    <ion-label>Player</ion-label>
+  </ion-segment-button>
+</ion-segment>
