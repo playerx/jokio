@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core'
-import { Meta, Title } from '@angular/platform-browser'
 import { CommunitiesService } from 'src/app/services/communities.service'
 
 @Component({
@@ -18,28 +17,7 @@ export class PlayerLobbyPage implements OnInit {
     ) as any[]
   }
 
-  constructor(
-    private title: Title,
-    private meta: Meta,
-    public communities: CommunitiesService
-  ) {}
+  constructor(public communities: CommunitiesService) {}
 
-  ngOnInit() {
-    this.title.setTitle('Shop!')
-
-    this.meta.addTag({
-      name: 'og:title',
-      content: '🛒 Shop',
-    })
-    this.meta.addTag({
-      name: 'og:description',
-      content: 'Find out cool items for your avatar and more!',
-    })
-
-    this.meta.addTag({
-      name: 'og:image',
-      content:
-        'https://upload.wikimedia.org/wikipedia/commons/8/8e/Shop.svg',
-    })
-  }
+  ngOnInit() {}
 }
