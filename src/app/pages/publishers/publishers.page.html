@@ -1,3 +1,54 @@
 <header class="centered ion-padding">
-  <h2>Publisher View</h2>
+  <h2>Community as a Publisher</h2>
+
 </header>
+<section class="centered ion-padding">
+  <h3>My Communities</h3>
+
+  <ion-list>
+    <ion-item *ngFor="let item of communities.items"
+              color="light"
+              [routerLink]="'/publisher/' + item.id">
+      <ion-label>📍 {{ item.name }}</ion-label>
+    </ion-item>
+  </ion-list>
+</section>
+
+<section class="centered ion-padding newCommunity">
+  <h3>Create a new Community</h3>
+
+  <ion-list>
+    <ion-item>
+      <ion-input label="Name"
+                 placeholder="My Community"
+                 type="text"
+                 [(ngModel)]="name"
+                 labelPlacement="floating"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input label="Admin Wallet Addresses"
+                 placeholder="0x91D7....192bCb, 0xA50D....4E02C3"
+                 [(ngModel)]="adminWalletsString"
+                 type="text"
+                 labelPlacement="floating"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input label="Fee (in percentage %)"
+                 placeholder="2"
+                 [(ngModel)]="fee"
+                 type="number"
+                 labelPlacement="floating"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <div class="ion-text-right">
+    <ion-button color="success createBtn"
+                [disabled]="fee! > 0"
+                (click)="create()">
+      Create
+    </ion-button>
+  </div>
+
+</section>

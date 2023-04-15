@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { Meta, Title } from '@angular/platform-browser'
+import { CommunitiesService } from 'src/app/services/communities.service'
 
 @Component({
   selector: 'app-player-lobby',
@@ -7,7 +8,21 @@ import { Meta, Title } from '@angular/platform-browser'
   styleUrls: ['./player-lobby.page.scss'],
 })
 export class PlayerLobbyPage implements OnInit {
-  constructor(private title: Title, private meta: Meta) {}
+  get allGames() {
+    return this.communities.items.flatMap(x =>
+      x.games.map(y => {
+        ;(y as any).communityName = x.name
+
+        return y
+      })
+    ) as any[]
+  }
+
+  constructor(
+    private title: Title,
+    private meta: Meta,
+    public communities: CommunitiesService
+  ) {}
 
   ngOnInit() {
     this.title.setTitle('Shop!')

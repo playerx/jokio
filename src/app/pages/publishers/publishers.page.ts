@@ -1,28 +1,33 @@
 import { Component, OnInit } from '@angular/core'
-import { Meta, Title } from '@angular/platform-browser'
+import { CommunitiesService } from 'src/app/services/communities.service'
 
 @Component({
   selector: 'app-publishers',
   templateUrl: './publishers.page.html',
   styleUrls: ['./publishers.page.scss'],
 })
-export class PublisherPage implements OnInit {
-  constructor(private title: Title, private meta: Meta) {}
+export class PublishersPage implements OnInit {
+  name: string = ''
+  adminWalletsString: string = ''
+  fee?: number
 
-  ngOnInit() {
-    this.title.setTitle('Quests!')
-    this.meta.addTag({
-      name: 'og:title',
-      content: '😎 Quests!',
-    })
-    this.meta.addTag({
-      name: 'og:description',
-      content: 'Complete quests and get tokens!',
-    })
+  constructor(public communities: CommunitiesService) {}
 
-    this.meta.addTag({
-      name: 'og:image',
-      content: 'https://i.ytimg.com/vi/e7VEe_qW4oE/maxresdefault.jpg',
+  ngOnInit() {}
+
+  create() {
+    if (!this.fee) {
+      return
+    }
+
+    this.communities.items.push({
+      id: Date.now().toString(),
+      name: this.name,
+      adminWallets: this.adminWalletsString
+        .replace(/ /g, '')
+        .split(','),
+      fee: this.fee,
+      games: [],
     })
   }
 }

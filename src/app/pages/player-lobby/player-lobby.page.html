@@ -1,3 +1,36 @@
 <header class="centered ion-padding">
   <h2>Player Lobby</h2>
 </header>
+
+
+<section class="centered ion-padding">
+  <h3>Games</h3>
+
+  <ion-list>
+    <ion-item *ngFor="let item of allGames"
+              color="light">
+      <ion-label>🎮 {{ item.name }} @ {{ item.communityName }} {{ item.isApproved ? '🟢' : '🟡' }}</ion-label>
+
+      <ion-button slot="end">
+        Play
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</section>
+
+
+<section class="centered ion-padding">
+  <h3>Communities</h3>
+
+  <ion-list>
+    <ion-item *ngFor="let item of communities.items"
+              color="light">
+      <ion-label>🎮 {{ item.name }}</ion-label>
+
+      <ion-button slot="end"
+                  color="secondary">
+        Subscribe
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</section>
