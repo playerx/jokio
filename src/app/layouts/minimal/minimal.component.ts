@@ -22,6 +22,10 @@ export class MinimalLayout implements OnInit {
     const path = this.location.path(false)
 
     switch (path) {
+      case '/home':
+        this.selectedTab = 'home'
+        break
+
       case '/game-developer':
         this.selectedTab = 'game-developer'
         break

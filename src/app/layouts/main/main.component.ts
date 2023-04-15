@@ -32,6 +32,10 @@ export class MainLayout implements OnInit {
     }
 
     switch (path) {
+      case '/home':
+        this.selectedTab = 'home'
+        break
+
       case '/game-developer':
         this.selectedTab = 'game-developer'
         break

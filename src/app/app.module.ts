@@ -13,6 +13,7 @@ import { AppComponent } from './layouts/app/app.component'
 import { MainLayout } from './layouts/main/main.component'
 import { MinimalLayout } from './layouts/minimal/minimal.component'
 import { GameDevelopersPage } from './pages/game-developers/game-developers.page'
+import { HomePage } from './pages/home/home.page'
 import { PlayerLobbyPage } from './pages/player-lobby/player-lobby.page'
 import { PublisherPage } from './pages/publisher/publisher.page'
 import { PublishersPage } from './pages/publishers/publishers.page'
@@ -30,6 +31,7 @@ import { AvatarService } from './services/avatar.service'
     PlayerLobbyPage,
     PublishersPage,
     PublisherPage,
+    HomePage,
     RoomPage,
   ],
   imports: [

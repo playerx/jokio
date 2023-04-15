@@ -11,6 +11,11 @@
                  color="secondary"
                  [value]="selectedTab"
                  (ionChange)="onTabChange($event)">
+      <ion-segment-button value="home"
+                          routerLinkActive="segment-button-checked"
+                          routerLink="/home">
+        <ion-label>Home</ion-label>
+      </ion-segment-button>
       <ion-segment-button value="game-developer"
                           routerLinkActive="segment-button-checked"
                           routerLink="/game-developer">
@@ -68,6 +73,11 @@
              color="secondary"
              [value]="selectedTab"
              (ionChange)="onTabChange($event)">
+  <ion-segment-button value="home"
+                      routerLinkActive="segment-button-checked"
+                      routerLink="/home">
+    <ion-label>Home</ion-label>
+  </ion-segment-button>
   <ion-segment-button value="game-developer"
                       routerLinkActive="segment-button-checked"
                       routerLink="/game-developer">
