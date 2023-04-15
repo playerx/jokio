@@ -1,45 +1,62 @@
-import {
-  Component,
-  Inject,
-  OnDestroy,
-  OnInit,
-  PLATFORM_ID,
-} from "@angular/core";
-import { Router } from "@angular/router";
-import { Subject } from "rxjs";
-import { AvatarService } from "../../services/avatar.service";
+import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
+import { CommunitiesService } from 'src/app/services/communities.service'
+import { UserService } from 'src/app/services/user.service'
 
 @Component({
-  selector: "app-game-developers",
-  templateUrl: "./game-developers.page.html",
-  styleUrls: ["./game-developers.page.scss"],
+  selector: 'app-game-developers',
+  templateUrl: './game-developers.page.html',
+  styleUrls: ['./game-developers.page.scss'],
 })
-export class GameDevelopersPage implements OnInit, OnDestroy {
-  private unsubscribe$ = new Subject<void>();
+export class GameDevelopersPage implements OnInit {
+  communityId: string = ''
+  name: string = ''
+  adminWalletsString: string = ''
+  price?: number
+  assetsCID: string = ''
+
+  get myGames() {
+    return this.communities.items
+      .flatMap(x =>
+        x.games.map(y => {
+          ;(y as any).communityName = x.name
+
+          return y
+        })
+      )
+      .filter(x =>
+        x.adminWallets.includes(this.user.walletAddress)
+      ) as any[]
+  }
 
   constructor(
     private router: Router,
-    private avatar: AvatarService,
-
-    @Inject(PLATFORM_ID)
-    private platformId: Object
+    public communities: CommunitiesService,
+    private user: UserService
   ) {}
 
   ngOnInit() {}
 
-  ngOnDestroy() {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
-  }
-
   goToRooms() {
-    console.log("nav");
-    this.router.navigate(["/room"]);
+    console.log('nav')
+    this.router.navigate(['/room'])
   }
 
-  async openBuilder() {
-    const config = this.avatar.getDefaultAvatarConfig();
+  create() {
+    const community = this.communities.items.find(
+      x => x.id === this.communityId
+    )
+    if (!community) {
+      return
+    }
 
-    this.avatar.openAvatarBuilder(config);
+    community.games.push({
+      id: Date.now().toString(),
+      name: this.name,
+      adminWallets: [this.user.walletAddress],
+      price: this.price!,
+      assetsCID: this.assetsCID,
+      isApproved: false,
+    })
   }
 }
