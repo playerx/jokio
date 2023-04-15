@@ -9,8 +9,7 @@
 
   <ion-list>
     <ion-item *ngFor="let item of myGames"
-              color="light"
-              [routerLink]="'/publisher/' + item.id">
+              color="light">
       <ion-label>🎮 {{ item.name }} @ {{ item.communityName }} {{ item.isApproved ? '🟢' : '🟡' }}</ion-label>
     </ion-item>
   </ion-list>
@@ -19,53 +18,3 @@
 <section class="ion-text-center">
   <ion-button>Create a new Game</ion-button>
 </section>
-
-<!-- 
-<section class="centered ion-padding newCommunity">
-  <h3>Create a new Game</h3>
-
-  <ion-list>
-    <ion-item>
-      <ion-select aria-label="fruit"
-                  placeholder="Community">
-        <ion-select-option *ngFor="let item of communities.items"
-                           [value]="item.id">
-          {{item.name}}
-        </ion-select-option>
-      </ion-select>
-    </ion-item>
-
-    <ion-item>
-      <ion-input label="Name"
-                 placeholder="My Awesome Game"
-                 type="text"
-                 [(ngModel)]="name"
-                 labelPlacement="floating"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-input label="Price (in ETH)"
-                 placeholder="0.001"
-                 [(ngModel)]="price"
-                 type="number"
-                 labelPlacement="floating"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-input label="Assets CID"
-                 placeholder="QmPK1s3pNYLi9ER..."
-                 [(ngModel)]="assetsCID"
-                 type="text"
-                 labelPlacement="floating"></ion-input>
-    </ion-item>
-  </ion-list>
-
-  <div class="ion-text-right">
-    <ion-button color="success createBtn"
-                [disabled]="!price || !name || !adminWalletsString || !assetsCID"
-                (click)="create()">
-      Create
-    </ion-button>
-  </div>
-
-</section> -->
