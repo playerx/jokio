@@ -35,8 +35,8 @@ contract Registry {
             rejectReason: ""
         }));
 
-        IPUSHCommInterface("0xb3971BCef2D791bc4027BbfedFb47319A4AAaaAa").sendNotification(
-            "0x69f85F4D2441ec1AF3c6Bf3be854378cF115f933", // from channel - recommended to set channel via dApp and put it's value -> then once contract is deployed, go back and add the contract address as delegate for your channel
+        IPUSHCommInterface(0xb3971BCef2D791bc4027BbfedFb47319A4AAaaAa).sendNotification(
+            0x69f85F4D2441ec1AF3c6Bf3be854378cF115f933, // from channel - recommended to set channel via dApp and put it's value -> then once contract is deployed, go back and add the contract address as delegate for your channel
             address(this), // to recipient, put address(this) in case you want Broadcast or Subset. For Targetted put the address to which you want to send
             bytes(
                 string(
@@ -64,8 +64,8 @@ contract Registry {
             }
         }
 
-        IPUSHCommInterface("0xb3971BCef2D791bc4027BbfedFb47319A4AAaaAa").sendNotification(
-            "0x69f85F4D2441ec1AF3c6Bf3be854378cF115f933", // from channel - recommended to set channel via dApp and put it's value -> then once contract is deployed, go back and add the contract address as delegate for your channel
+        IPUSHCommInterface(0xb3971BCef2D791bc4027BbfedFb47319A4AAaaAa).sendNotification(
+            0x69f85F4D2441ec1AF3c6Bf3be854378cF115f933, // from channel - recommended to set channel via dApp and put it's value -> then once contract is deployed, go back and add the contract address as delegate for your channel
             address(this), // to recipient, put address(this) in case you want Broadcast or Subset. For Targetted put the address to which you want to send
             bytes(
                 string(
